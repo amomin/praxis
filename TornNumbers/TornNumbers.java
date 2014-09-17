@@ -1,6 +1,14 @@
 import java.util.ArrayList;
 import java.lang.*;
 
+/*
+ * This solution misses possible "solutions" with "leading zeros" e.g.
+ *
+ * 9801 = (98+01)^2 = 98 + 01
+ * or
+ * 10000 = (100 + 0)^2 = 100 "+" 00
+ */
+
 /**
  * Torn Numbers - finds "torn numbers"
  *
@@ -20,11 +28,13 @@ import java.lang.*;
 
 public class TornNumbers {
 
-	/** Compute torn numbers less than N
+	/** Compute torn numbers less than N -
+	 *
+	 * this algorithm misses answers with "leading zeros"
 	 *
 	 * @param int N - check integers from 0 to N
 	 */
-	public static ArrayList<TornNum> tornNumbersLessThan(int N) {
+	public static ArrayList<TornNum> attempt1(int N) {
 		int i = 1;
 		int j = 1;
 		int n;
@@ -48,9 +58,38 @@ public class TornNumbers {
 		return tornNumbers;
 	}
 
+	/** Compute torn numbers less than N -
+	 *
+	 * @param int N - check integers from 0 to N
+	 */
+	public static ArrayList<TornNum> allLessThan(int N) {
+		int n = 1;
+		int M = 1;
+		int numDigits = 1;
+		int digit;
+		int i,j, mod;
+		ArrayList<TornNum> tornNumbers = new ArrayList<TornNum>();
+		while (M < N) {
+			digit = 0;
+			while (digit <= numDigits) {
+				mod = (int)Math.pow(10,digit);
+				i = M / mod;
+				j = M % mod;
+				if ( (i+j)*(i+j) == M ) {
+					tornNumbers.add(new TornNum(M, i, j));
+				}
+				digit++;
+			}
+			n++;
+			M = n*n;
+			numDigits = 1 + (int) Math.floor(Math.log10(M));
+		}
+		return tornNumbers;
+	}
+
 	public static void main(String[] args) {
-		int N = 10000000;
-		ArrayList<TornNum> tn = tornNumbersLessThan(N);
+		int N = 1000000000;
+		ArrayList<TornNum> tn = allLessThan(N);
 		for (TornNum i : tn) {
 			System.out.println(i.asString());
 		}
@@ -70,9 +109,8 @@ public class TornNumbers {
 		public String asString() {
 			int numDigits = 1 + (int) Math.floor(Math.log10(j));
 			int concat =  + j;
-			return String.valueOf(n) + "=(" + i + "+" + j +
-				")^2 = " + ((int) Math.pow(10,numDigits))*i + 
-				"+" + j;
+			return String.format("%12d = (%d + %d)^2 = %d + %d",
+					n, i, j, ((int) Math.pow(10,numDigits))*i, j);
 		}
 	}
 }
