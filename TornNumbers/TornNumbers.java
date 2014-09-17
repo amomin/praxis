@@ -1,5 +1,6 @@
+package TornNumbers;
+
 import java.util.ArrayList;
-import java.lang.*;
 
 /*
  * This solution misses possible "solutions" with "leading zeros" e.g.

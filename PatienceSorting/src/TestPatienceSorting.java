@@ -1,3 +1,5 @@
+package PatienceSorting.src;
+
 import java.util.*;
 
 public class TestPatienceSorting {
