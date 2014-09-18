@@ -6,8 +6,8 @@ public class GeneratingPalindromes {
 
 	/** Generates palindromic numbers less than input N.
 	 * 
-	 * @param N
-	 * @return - an ArrayList of Integers consisting of all non-negative palindromic
+	 * @param int N - upper bound for palindromic numbers in output list
+	 * @return an ArrayList of Integers consisting of all non-negative palindromic
 	 * 		numbers less than N
 	 */
 	public static ArrayList<Integer> generatePalindromesLessThan(int N) {
@@ -60,8 +60,8 @@ public class GeneratingPalindromes {
 
 	/** Reverses the digits of an integer n.
 	 * 
-	 * @param n
-	 * @return
+	 * @param n - int n = the integer to reverse
+	 * @return the integer with digits of n reverse
 	 */
 	private static int reverse(int n) {
 		int result = 0;
@@ -97,13 +97,15 @@ public class GeneratingPalindromes {
 	}
 
 	public static void main(String[] args) {
+		// Method one, control the largest element
+		// in the output list
 		ArrayList<Integer> palindromes = generatePalindromesLessThan(100000);
 		int count = 1;
 		for(Integer p : palindromes) {
 			System.out.println("Palindrome number " + count + " is " + p);
 			count++;
 		}
-		// Method two
+		// Method two, control the size of the output list
 		int q;
 		for (int i = 0; i < 1000; i++) {
 			q = palindromicNumber(i);
