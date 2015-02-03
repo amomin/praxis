@@ -1,3 +1,4 @@
+package LongIncSubseq;
 public class LongIncSubseq {	
 
 	/** Determines the longest increasing subsequence of a 

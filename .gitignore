@@ -1,2 +1,8 @@
 *.class
 *.sh
+.classpath
+.project
+.metadata
+*/bin/
+*/.settings/
+.recommenders/

@@ -1,4 +1,4 @@
-package PatienceSorting.src;
+package PatienceSorting;
 
 import java.util.*;
 
