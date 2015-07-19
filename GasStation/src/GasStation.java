@@ -42,7 +42,6 @@ public class GasStation {
 	}
 
 	// Use cummulative sums for a one-pass solution O(1) time and space.
-	// requires O(n) space.
 	public static int solve2(int[] gas, int[] milesToNext) {
 		int n = gas.length;
 		int currcumm = 0;
